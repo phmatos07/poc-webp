@@ -1,0 +1,20 @@
+{
+  "name": "poc-webp",
+  "version": "1.0.0",
+  "description": "WebP é um formato de imagem desenvolvido pela Google, com o objetivo de diminuir o tamanho dos arquivos e garantir uma transferência mais rápida para quem possui uma internet lenta.",
+  "main": "webp.js",
+  "author": "Phelipe Matos - PHMATOS07",
+  "license": "GPL-3.0",
+  "scripts": {
+    "webp": "node src/app.js",
+    "debug": "node --inspect src/app.js",
+    "debug:brk": "node --inspect-brk src/app.js",
+    "lint": "./node_modules/.bin/eslint src"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.21.0"
+  }
+}
