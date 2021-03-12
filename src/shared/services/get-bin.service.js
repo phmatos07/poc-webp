@@ -1,11 +1,17 @@
+const dotenv = require('dotenv').config();
 const path = require('path');
 const OperatingSystemEnum = require('../enum/operating-system.enum');
 const ArchitectureEnum = require('../enum/architecture.enum');
 const BinNameEnum = require('./../enum/bin-name.enum');
 
-const GetBinService = (binName = BinNameEnum.LINUX) => {
+const GetBinService = (binName = BinNameEnum.CWEBP) => {
 
   try {
+
+    if (dotenv.error) {
+      throw dotenv.error;
+    }
+
     const FOLDER_LEVEL = '../../../';
 
     switch (process.platform) {
