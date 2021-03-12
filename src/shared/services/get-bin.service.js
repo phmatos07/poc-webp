@@ -1,5 +1,6 @@
 const dotenv = require('dotenv').config();
 const path = require('path');
+const fs = require('fs');
 const OperatingSystemEnum = require('../enum/operating-system.enum');
 const ArchitectureEnum = require('../enum/architecture.enum');
 const BinNameEnum = require('./../enum/bin-name.enum');
@@ -16,10 +17,14 @@ const GetBinService = (binName = BinNameEnum.CWEBP) => {
 
     switch (process.platform) {
       case OperatingSystemEnum.MAC_OSX:
-        return path.join(__dirname, FOLDER_LEVEL, `${process.env.LIBWEBP_MAC_OSX}/${binName}`);
+        var exePathMacOsx = path.join(__dirname, FOLDER_LEVEL, `${process.env.LIBWEBP_MAC_OSX}/${binName}`);
+        fs.chmodSync(exePathMacOsx, 0o755);
+        return exePathMacOsx;
 
       case OperatingSystemEnum.LINUX:
-        return path.join(__dirname, FOLDER_LEVEL, `${process.env.LIBWEBP_LINUX}/${binName}`);
+        var exePathLinux = path.join(__dirname, FOLDER_LEVEL, `${process.env.LIBWEBP_LINUX}/${binName}`) || '';
+        fs.chmodSync(exePathLinux, 0o755);
+        return exePathLinux;
 
       case OperatingSystemEnum.WINDOWS:
         if (process.arch === ArchitectureEnum.X64) {
